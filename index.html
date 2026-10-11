@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Penjaga Dunia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #07090f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            top: -220px;
+            left: -180px;
+            background: #4f46e5;
+            border-radius: 50%;
+            filter: blur(180px);
+            opacity: 0.18;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            right: -200px;
+            bottom: -200px;
+            background: #2563eb;
+            border-radius: 50%;
+            filter: blur(180px);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        header {
+            min-height: 620px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px),
+                linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px);
+            background-size: 65px 65px;
+            mask-image:
+                linear-gradient(to bottom,
+                    black,
+                    transparent);
+        }
+
+        .hero {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-left {
+            max-width: 750px;
+        }
+
+        .small-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #818cf8;
+            font-size: 11px;
+            letter-spacing: 4px;
+            font-weight: bold;
+            margin-bottom: 28px;
+        }
+
+        .small-title::before {
+            content: "";
+            width: 40px;
+            height: 1px;
+            background: #6366f1;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 8vw, 105px);
+            line-height: 0.88;
+            letter-spacing: -6px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 span {
+            color: transparent;
+            -webkit-text-stroke: 1px #818cf8;
+        }
+
+        .hero-description {
+            color: #7e8799;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-circle {
+            width: 220px;
+            height: 220px;
+            min-width: 220px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle,
+                    rgba(99, 102, 241, 0.18),
+                    transparent 65%);
+            position: relative;
+        }
+
+        .hero-circle::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+        }
+
+        .hero-circle small {
+            color: #626b7d;
+            font-size: 10px;
+            letter-spacing: 4px;
+        }
+
+        .hero-circle strong {
+            font-size: 82px;
+            line-height: 1;
+            letter-spacing: -8px;
+            margin: 4px 0;
+        }
+
+        .hero-circle span {
+            color: #818cf8;
+            font-size: 10px;
+            letter-spacing: 4px;
+        }
+
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 110px auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            color: #6366f1;
+            font-size: 10px;
+            letter-spacing: 4px;
+            font-weight: bold;
+        }
+
+        .section-header h2 {
+            font-size: 45px;
+            letter-spacing: -2px;
+            margin-top: 8px;
+        }
+
+        .section-right {
+            color: #596172;
+            font-size: 13px;
+            max-width: 260px;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            min-height: 420px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.018));
+
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition:
+                transform 0.45s ease,
+                border-color 0.45s ease,
+                box-shadow 0.45s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: #6366f1;
+            filter: blur(110px);
+            opacity: 0;
+            right: -100px;
+            top: -100px;
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(129, 140, 248, 0.45);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+        }
+
+        .card:hover::before {
+            opacity: 0.22;
+        }
+
+        .background-number {
+            position: absolute;
+            right: -10px;
+            bottom: -45px;
+            font-size: 190px;
+            line-height: 1;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.025);
+            pointer-events: none;
+            transition: 0.5s;
+        }
+
+        .card:hover .background-number {
+            color: rgba(129, 140, 248, 0.07);
+            transform: translateY(-10px);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .number {
+            width: 58px;
+            height: 58px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(135deg,
+                    #1e1b4b,
+                    #4338ca);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #c7d2fe;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow:
+                0 10px 25px rgba(79, 70, 229, 0.25);
+        }
+
+        .open-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #737c8e;
+            transition: 0.4s;
+        }
+
+        .card:hover .open-icon {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card h3 {
+            font-size: 30px;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .card:hover h3 {
+            color: #a5b4fc;
+        }
+
+        .card p {
+            color: #737c8e;
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 400px;
+            min-height: 76px;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            width: fit-content;
+            padding: 12px 16px;
+            border-radius: 11px;
+            background: #f8fafc;
+            color: #111827;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: 0.35s;
+        }
+
+        .button span {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.35s;
+        }
+
+        .button:hover {
+            background: #6366f1;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .button:hover span {
+            background: white;
+            color: #111827;
+            transform: rotate(45deg);
+        }
+
+        .card:last-child {
+            grid-column: span 2;
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 20px;
+            text-align: center;
+            color: #505868;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-circle {
+                display: none;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card:last-child {
+                grid-column: span 2;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+            header {
+                min-height: 600px;
+            }
+
+            .hero {
+                width: 88%;
+            }
+
+            .hero h1 {
+                font-size: 58px;
+                letter-spacing: -4px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            main {
+                width: 90%;
+                margin: 80px auto;
+            }
+
+            .section-header {
+                display: block;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .section-right {
+                text-align: left;
+                margin-top: 12px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .card {
+                min-height: 370px;
+                padding: 27px;
+                border-radius: 25px;
+            }
+
+            .card:last-child {
+                grid-column: auto;
+            }
+
+            .card h3 {
+                font-size: 27px;
+            }
+
+            .background-number {
+                font-size: 150px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="hero">
+            <div class="hero-left">
+                <div class="small-title">
+                    DIGITAL COLLECTION
+                </div>
+                <h1>
+                    PORTFOLIO // CREATIONS
+                    <span>GALLERY</span>
+                </h1>
+                <p class="hero-description">
+                    “Ideas hidden. Creations revealed.”
+                </p>
+            </div>
+            <div class="hero-circle">
+                <small>MISSION</small>
+                <strong>RPL</strong>
+                <span>PORTFOLIO</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="section-header">
+            <div>
+                <div class="section-label">
+                    MY WORKS
+                </div>
+                <h2>
+                    5 Portfolio Project
+                </h2>
+            </div>
+            <div class="section-right">
+               Buka Arsip
+            </div>
+        </div>
+
+        <div class="portfolio-grid">
+
+            <!--card 1-->
+            <div class="card">
+                <div class="background-number">
+                    25
+                </div>
+                <div class="card-top">
+                    <div class="number">
+                        25
+                    </div>
+
+                    <div class="open-icon">
+                        ☯
+                    </div>
+
+                </div>
+                <div class="card-content">
+                    <h3>
+                        Krisna Bayu Pratama
+                        (EXP LORD)
+                    </h3>
+                    <p>
+                        Menjadi anak RPL bukan hanya tentang belajar coding, tetapi juga belajar berpikir, memecahkan
+                        masalah, dan menciptakan sesuatu yang bisa bermanfaat bagi banyak orang.
+                    </p>
+                    <a class="button" href="https://pratikum-profil.vercel.app/">
+                        Eksplorasi Project
+                    </a>
+                </div>
+            </div>
+
+            <!--card 2-->
+            <div class="card">
+                <div class="background-number">
+                    04
+                </div>
+                <div class="card-top">
+                    <div class="number">
+                        04
+                    </div>
+                    <div class="open-icon">
+                        ☯
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3>
+                        Al Amin Bayu Styawan
+                        (ROAMER LORD)
+                    </h3>
+                    <p>
+                        Setiap baris kode yang kita tulis mungkin terlihat sederhana, tetapi dari situlah sebuah ide
+                        bisa berkembang menjadi karya yang nyata dan membanggakan.
+                    </p>
+                    <a class="button" href="https://profil-uyab.vercel.app/">
+                        Eksplorasi Project
+                    </a>
+                </div>
+            </div>
+
+            <!--card 3-->
+            <div class="card">
+                <div class="background-number">
+                    12
+                </div>
+                <div class="card-top">
+                    <div class="number">
+                        12
+                    </div>
+                    <div class="open-icon">
+                        ☯
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <h3>
+                        Brian Raditya Pratama
+                        (MID LORD)
+                    </h3>
+                    <p>
+                        Error dan bug adalah bagian dari perjalanan anak RPL, karena dari setiap kesalahan kita belajar
+                        menjadi lebih teliti, lebih sabar, dan lebih hebat dalam menyelesaikan masalah.
+                    </p>
+                    <a class="button" href="https://profil-brian.vercel.app/">
+                        Eksplorasi Project
+                    </a>
+                </div>
+            </div>
+
+            <!--card 4-->
+            <div class="card">
+                <div class="background-number">
+                    01
+                </div>
+                <div class="card-top">
+                    <div class="number">
+                        01
+                    </div>
+                    <div class="open-icon">
+                        ☯
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <h3>
+                        Achmad Nur Madjid
+                        (GOLD LORD)
+                    </h3>
+                    <p>
+                        Anak RPL tidak hanya dituntut untuk bisa membuat program, tetapi juga harus memiliki
+                        kreativitas, logika, kerja sama, dan keberanian untuk terus mencoba hal-hal baru.
+                    </p>
+                    <a class="button" href="https://profil-mamad.vercel.app/">
+                        Eksplorasi Project
+                    </a>
+                </div>
+            </div>
+            
+            <!--card 5-->
+            <div class="card">
+                <div class="background-number">
+                    02
+                </div>
+                <div class="card-top">
+                    <div class="number">
+                        02
+                    </div>
+                    <div class="open-icon">
+                        ☯
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <h3>
+                        Afra Ghaus Dedy
+                        (JUNGLE LORD)
+                    </h3>
+                    <p>
+                        Dunia RPL mengajarkan bahwa tidak ada program yang langsung sempurna, semuanya membutuhkan
+                        proses, perbaikan, dan kesabaran sampai akhirnya menghasilkan sesuatu yang kita banggakan.
+                    </p>
+
+
+                    <a class="button" href="https://profil-afra-2.vercel.app/">
+                        Eksplorasi Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 XI RPL 1 - “Belajar dari error, berkembang dari proses, dan bangga dengan setiap karya.”
+    </footer>
+
+</body>
+
+</html>
